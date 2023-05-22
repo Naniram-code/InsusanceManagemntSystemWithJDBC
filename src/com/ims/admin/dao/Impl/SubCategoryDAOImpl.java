@@ -1,14 +1,16 @@
-package com.pms.admin.dao.Impl;
+package com.ims.admin.dao.Impl;
 
-import com.pms.admin.dao.Impl.jdbcUtility.ConnectionManager;
-import com.pms.admin.dao.Impl.jdbcUtility.ExceptionSMS;
-import com.pms.admin.dao.SubCategoryDetailsDAO;
-import com.pms.model.SubCategoryDetails;
+import com.ims.configure.ConnectionManager;
+import com.ims.exception.ExceptionSMS;
+import com.ims.admin.dao.SubCategoryDetailsDAO;
+import com.ims.model.SubCategoryDetails;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+
+import static com.ims.query.QueryConstant.*;
 
 public class SubCategoryDAOImpl implements SubCategoryDetailsDAO {
         static Connection connection = null;
@@ -25,8 +27,8 @@ public class SubCategoryDAOImpl implements SubCategoryDetailsDAO {
 
             try {
                 connection = ConnectionManager.getConnection();//1
-                final String sql = "INSERT INTO SubCategory (`sbname`,`Description`) VALUES (?,?)";
-                preparedStatement = connection.prepareStatement(sql);//2
+
+                preparedStatement = connection.prepareStatement(InsertSubCategory);//2
                 preparedStatement.setString(1, subcategoryDetail.getSbname());
                 preparedStatement.setString(2, subcategoryDetail.getDescription());
 
@@ -50,14 +52,12 @@ public class SubCategoryDAOImpl implements SubCategoryDetailsDAO {
 
             try {
                 connection = ConnectionManager.getConnection();//1
-
-                final String readQuery = "SELECT * FROM SubCategory";
-                preparedStatement = connection.prepareStatement(readQuery);//2
+                preparedStatement = connection.prepareStatement(readSubCategory);//2
                 resultSet = preparedStatement.executeQuery();//3
                 while (resultSet.next()) {
                     System.out.println("sbid: "+resultSet.getInt(1)+
-                            "   SubCategory: "+resultSet.getString(2)+
-                            "   Descriptions:"+resultSet.getString(3));
+                                     "   SubCategory: "+resultSet.getString(2)+
+                                     "   Descriptions:"+resultSet.getString(3));
                     row++;
                 }
                 if (row != 0) {
@@ -80,18 +80,16 @@ public class SubCategoryDAOImpl implements SubCategoryDetailsDAO {
         public int updateSubCategory(int sbid) throws SQLException {
             try {
                 connection = ConnectionManager.getConnection();//1
-                final String updateQuerysname = "UPDATE SubCategory SET `sbname` = ? WHERE sbid =?";
-                final String updateQuerysaddress = "UPDATE SubCategory SET  `Description`  = ? WHERE sbid =?";
                 System.out.println("Enter 1 for  for update cname 2 for Description=");
                 int ch = sc.nextInt();
                 if (ch == 1) {
-                    preparedStatement = connection.prepareStatement(updateQuerysname);//2
+                    preparedStatement = connection.prepareStatement(updateSCsname);//2
                     System.out.println("Enter New SubCategory name for update=");
                     String sbna = sc.next();
                     preparedStatement.setString(1, sbna);
                     preparedStatement.setInt(2, sbid);
                 } else {
-                    preparedStatement = connection.prepareStatement(updateQuerysaddress);//2
+                    preparedStatement = connection.prepareStatement(updateSCdes);//2
                     System.out.println("Enter New SubCategory for update=");
                     String des = sc.next();
                     preparedStatement.setString(1, des);
@@ -119,8 +117,7 @@ public class SubCategoryDAOImpl implements SubCategoryDetailsDAO {
         public int deleteSubCategory(int cid) throws SQLException {
             try {
                 connection = ConnectionManager.getConnection();//1
-                final String deleteQuery = "DELETE FROM SubCategory WHERE cid=?";
-                preparedStatement = connection.prepareStatement(deleteQuery);//2
+                preparedStatement = connection.prepareStatement(deleteSBC);//2
                 preparedStatement.setInt(1, cid);
                 row = preparedStatement.executeUpdate();//3
                 if (row > 0) {

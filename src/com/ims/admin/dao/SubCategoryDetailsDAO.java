@@ -1,7 +1,7 @@
-package com.pms.admin.dao;
+package com.ims.admin.dao;
 
-import com.pms.admin.dao.Impl.jdbcUtility.ExceptionSMS;
-import com.pms.model.SubCategoryDetails;
+import com.ims.exception.ExceptionSMS;
+import com.ims.model.SubCategoryDetails;
 
 import java.sql.SQLException;
 import java.util.List;

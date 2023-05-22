@@ -1,4 +1,4 @@
-package com.pms.model;
+package com.ims.model;
 
 public class PolicyDetails {
     private int pid;

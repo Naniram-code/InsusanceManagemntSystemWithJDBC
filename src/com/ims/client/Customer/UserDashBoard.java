@@ -1,16 +1,17 @@
-package com.pms.client.Customer;
+package com.ims.client.Customer;
 
-import com.pms.admin.dao.Impl.*;
-import com.pms.client.HomePage;
+import com.ims.admin.dao.Impl.*;
+import com.ims.client.HomePage;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserDashBoard {
     static PolicyDAOImpl policyDAOc = new PolicyDAOImpl();
-    static SubCategoryDAOImpl subCategoryDAO=new SubCategoryDAOImpl();
+    static SubCategoryDAOImpl subCategoryDAO = new SubCategoryDAOImpl();
     static UserStatusDAOImpl userstatusDAO = new UserStatusDAOImpl();
-static CategoryDAOImpl categoryDAO=new CategoryDAOImpl();
+    static CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
+
     public static void UserDashBoardmenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -30,7 +31,7 @@ static CategoryDAOImpl categoryDAO=new CategoryDAOImpl();
                     break;
 
                 case 2:
-               subCategoryDAO.viewSubCategory();
+                    subCategoryDAO.viewSubCategory();
                     break;
 
                 case 3:
@@ -39,16 +40,18 @@ static CategoryDAOImpl categoryDAO=new CategoryDAOImpl();
 
 
                 case 4:
-                        System.out.print("Enter  User ID =");
-                        int uid = sc.nextInt();
-                        System.out.print("Enter Policy ID =");
-                        int pid = sc.nextInt();
-                      userstatusDAO.createRequestPolicyList(uid,pid);
+                    System.out.print("Enter  Your ID =");
+                    int uid = sc.nextInt();
+                    System.out.print("Enter Policy ID  =");
+                    int pid = sc.nextInt();
+                    userstatusDAO.createRequestPolicyList(uid, pid);
 
                     break;
                 case 5:
                     System.out.print("Enter your Id=");
                     int id = sc.nextInt();
+                    userstatusDAO.ViewPolicyHold(id);
+
 
                     break;
 

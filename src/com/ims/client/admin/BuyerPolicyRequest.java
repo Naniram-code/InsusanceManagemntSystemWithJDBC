@@ -1,7 +1,7 @@
-package com.pms.client.admin;
+package com.ims.client.admin;
 
-import com.pms.admin.dao.Impl.UserDetailsDAOImpl;
-import com.pms.admin.dao.Impl.UserStatusDAOImpl;
+import com.ims.admin.dao.Impl.UserDetailsDAOImpl;
+import com.ims.admin.dao.Impl.UserStatusDAOImpl;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class BuyerPolicyRequest {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("======================================================  ");
-            System.out.println("                1)ViewUsersStatus                                 ");
+            System.out.println("                1)ViewAllUsersStatus                                 ");
             System.out.println("                2)Activate                               ");
             System.out.println("                3)Cancel                                 ");
             System.out.println("                4)BackAdminPage                                 ");
@@ -34,7 +34,7 @@ public class BuyerPolicyRequest {
 
                 case 3:
 
-                    System.out.println("Enter User ID for cancel= ");
+                    System.out.println("Enter User ID for Cancel= ");
                     int uid = sc.nextInt();
                     userStatusDAO.CancelUser(uid);
                     break;

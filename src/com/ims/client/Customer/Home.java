@@ -1,10 +1,10 @@
-package com.pms.client.Customer;
+package com.ims.client.Customer;
 
 
-import com.pms.admin.dao.Impl.CategoryDAOImpl;
-import com.pms.admin.dao.Impl.PolicyDAOImpl;
-import com.pms.admin.dao.Impl.SubCategoryDAOImpl;
-import com.pms.client.HomePage;
+import com.ims.admin.dao.Impl.CategoryDAOImpl;
+import com.ims.admin.dao.Impl.PolicyDAOImpl;
+import com.ims.admin.dao.Impl.SubCategoryDAOImpl;
+import com.ims.client.HomePage;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -22,8 +22,8 @@ public class Home {
             System.out.println("                1)View Category                     ");
             System.out.println("                2)View SubCategory                  ");
             System.out.println("                3)view Policy                       ");
-            System.out.println("                4)Registration                      ");
-            System.out.println("                5)Back                              ");
+            System.out.println("                4)User_Registration                  ");
+            System.out.println("                5)BackHomePage                       ");
             System.out.println("=====================================================");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();

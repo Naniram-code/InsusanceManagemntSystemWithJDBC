@@ -1,14 +1,14 @@
-package com.pms.client.Customer;
+package com.ims.client.Customer;
 
-import com.pms.admin.dao.Impl.UserDetailsDAOImpl;
-import com.pms.client.HomePage;
-import com.pms.model.UserList;
+import com.ims.admin.dao.Impl.UserDetailsDAOImpl;
+import com.ims.client.HomePage;
+import com.ims.model.UserList;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Registration {
-    static UserDetailsDAOImpl userDAO = new   UserDetailsDAOImpl();
+    static UserDetailsDAOImpl userDAO = new UserDetailsDAOImpl();
 
     public static void CustomerClientmenu() throws SQLException {
 
@@ -16,8 +16,8 @@ public class Registration {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("====================================================== ");
-            System.out.println("                1)Register                             ");
-            System.out.println("                2)VerificationUser                     ");
+            System.out.println("                1)Register                              ");
+            System.out.println("                2)Verification                         ");
             System.out.println("                3)forgotPassword                       ");
             System.out.println("                4)DeleteYourinfo                       ");
             System.out.println("                5)BackHomePage                          ");
@@ -45,14 +45,14 @@ public class Registration {
                     String emaill = sc.next();
                     System.out.print("Enter your password=");
                     String password = sc.next();
-                    userDAO.AuthenticationEmailandPassword(emaill,password);
+                    userDAO.AuthenticationEmailandPassword(emaill, password);
                     break;
                 case 3:
 
                     System.out.print("Enter  email for password recovery=");
                     String un = sc.next();
-                    if (userDAO.getPassword(un)!= null)
-                        System.out.println("Your Password=" +userDAO.getPassword(un));
+                    if (userDAO.getPassword(un) != null)
+                        System.out.println("Your Password=" + userDAO.getPassword(un));
                     break;
                 case 4:
                     System.out.print("Enter your ID=");

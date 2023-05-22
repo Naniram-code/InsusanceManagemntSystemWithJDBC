@@ -1,4 +1,4 @@
-package com.ims.configure.jdbcUtility;
+package com.ims.configure;
 
 import com.ims.exception.ExceptionSMS;
 import com.ims.utility.Properties_Reader;

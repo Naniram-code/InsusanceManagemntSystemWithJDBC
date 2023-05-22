@@ -1,17 +1,16 @@
-package com.pms.admin.dao.Impl;
+package com.ims.admin.dao.Impl;
 
-import com.pms.admin.dao.Impl.jdbcUtility.ConnectionManager;
-import com.pms.admin.dao.Impl.jdbcUtility.ExceptionSMS;
-import com.pms.admin.dao.UserStatusDAO;
-import com.pms.model.PolicyDetails;
-import com.pms.model.UserList;
+import com.ims.configure.ConnectionManager;
+import com.ims.exception.ExceptionSMS;
+import com.ims.admin.dao.UserStatusDAO;
+import com.ims.model.UserList;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.pms.query.QueryConstant.*;
+import static com.ims.query.QueryConstant.*;
 
 public class UserStatusDAOImpl implements UserStatusDAO {
     static Connection connection = null;
@@ -25,11 +24,11 @@ public class UserStatusDAOImpl implements UserStatusDAO {
     public List<UserList> createRequestPolicyList(int uid, int pid) throws SQLException {
         List<UserList> requestList = new LinkedList<>();
         try {
-            connection = ConnectionManager.getConnection();//1
-            preparedStatement = connection.prepareStatement(USER_REQUEST_POLICY);//2
+            connection = ConnectionManager.getConnection();//1 connection
+            preparedStatement = connection.prepareStatement(USER_REQUEST_POLICY);//2 Prepare statement
             preparedStatement.setInt(1, uid);
             preparedStatement.setInt(2, pid);
-            resultSet = preparedStatement.executeQuery();//3
+            resultSet = preparedStatement.executeQuery();//3 Execute
             while (resultSet.next()) {
                 //Read User and Policy data according request (two table Data)
                 String uName = resultSet.getString("User Name");
@@ -139,7 +138,6 @@ public class UserStatusDAOImpl implements UserStatusDAO {
             try {
                 connection = ConnectionManager.getConnection();//1
                 preparedStatement = connection.prepareStatement(Admin_Cancel_User);//2
-
                 preparedStatement.setString(1, "Cancel");
                 preparedStatement.setInt(2, uid);
                 row = preparedStatement.executeUpdate();//row update count//3
@@ -157,10 +155,40 @@ public class UserStatusDAOImpl implements UserStatusDAO {
             return row;
         }
 
-
-
     @Override
-    public void ViewPolicyHold() {
+    public void ViewPolicyHold(int uid)throws SQLException {
+        try {
+            connection = ConnectionManager.getConnection();//1
+            preparedStatement = connection.prepareStatement(Select_Active_User);//2
+            preparedStatement.setInt(1, uid);
+            preparedStatement.setString(2, "Active");
+            resultSet = preparedStatement.executeQuery();//3
+            while (resultSet.next()) {
+                System.out.println(//getting value from MY_Policy_LIst
+                                "ID:"+resultSet.getInt(1) +" "+
+                                "User Name:"+resultSet.getString(2) +" "+
+                                "Email: "+resultSet.getString(3) +" "+
+                                "Contact no:"+resultSet.getString(4) +" "+
+                                "Category:"+resultSet.getString(5) +" "+
+                                "Sub Category:"+resultSet.getString(6) +" "+
+                                "Policy name:"+resultSet.getString(7) +" "+
+                                "Sum Assured:"+resultSet.getInt(8)+" "+
+                                "Premium:"+resultSet.getString(9)+" "+
+                                "Status:"+resultSet.getString(10));
+                row++;
+            }
+            if (row != 0) {
+                throw new ExceptionSMS("Your policy hold  found Successfully");
+            } else {
+                throw new ExceptionSMS("Policy hold  not exit");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+            ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
+        }
+    }
 
     }
-}
+

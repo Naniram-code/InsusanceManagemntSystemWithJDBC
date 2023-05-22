@@ -1,7 +1,7 @@
-package com.pms.client.admin;
+package com.ims.client.admin;
 
-import com.pms.admin.dao.Impl.PolicyDAOImpl;
-import com.pms.model.PolicyDetails;
+import com.ims.admin.dao.Impl.PolicyDAOImpl;
+import com.ims.model.PolicyDetails;
 
 import java.sql.SQLException;
 import java.util.Scanner;

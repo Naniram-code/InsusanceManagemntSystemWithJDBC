@@ -1,4 +1,4 @@
-package com.pms.utility;
+package com.ims.utility;
 
 
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ public class Properties_Reader {
             properties = new Properties();
 
             try {
-                String filename = System.getProperty("user.dir") + "/src/com/pms/properties/app.properties";
+                String filename = System.getProperty("user.dir") + "/src/com/ims/properties/app.properties";
                 properties.load(new FileInputStream(filename));
             } catch (IOException e) {
                 throw new RuntimeException("Not able to find file");

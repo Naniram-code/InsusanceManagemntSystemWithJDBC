@@ -1,5 +1,5 @@
-package com.pms.admin.dao;
-import com.pms.model.UserList;
+package com.ims.admin.dao;
+import com.ims.model.UserList;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,7 +12,7 @@ public interface UserStatusDAO {
 
     public int ActivateRequest(int id) throws SQLException;
     public int CancelUser(int uid) throws SQLException;
-    public void ViewPolicyHold();
+    public void ViewPolicyHold(int uid) throws SQLException;
 
 
 

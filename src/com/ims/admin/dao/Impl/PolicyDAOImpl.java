@@ -1,27 +1,27 @@
-package com.pms.admin.dao.Impl;
+package com.ims.admin.dao.Impl;
 
-import com.pms.admin.dao.Impl.jdbcUtility.ConnectionManager;
-import com.pms.admin.dao.Impl.jdbcUtility.ExceptionSMS;
-import com.pms.admin.dao.PolicyDetailsDAO;
-import com.pms.model.PolicyDetails;
-import com.pms.model.UserList;
+import com.ims.configure.ConnectionManager;
+import com.ims.exception.ExceptionSMS;
+import com.ims.admin.dao.PolicyDetailsDAO;
+import com.ims.model.PolicyDetails;
+import com.ims.model.UserList;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.ims.query.QueryConstant.*;
+
 public class PolicyDAOImpl implements PolicyDetailsDAO {
     Scanner sc = new Scanner(System.in);
     static List<PolicyDetails> addPolicy = new LinkedList<>();
-    //static List<PolicyDetails> addCategory = new LinkedList<>();
-    //static List<PolicyDetails> addSubCategory = new LinkedList<>();
     static Connection connection = null;
     static Statement statement = null;
     static ResultSet resultSet = null;
     static PreparedStatement preparedStatement = null;
 
-    static List<UserList> studentList = new LinkedList<>();
+
     int row = 0;
 
 
@@ -29,9 +29,8 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
 
         try {
             connection = ConnectionManager.getConnection();//1
-            final String sql = "INSERT INTO PolicyList (Category,SubCategory,Name,`Sum Assured`,Premium,Description)" +
-                    " VALUES (?,?,?,?,?,?)";
-            preparedStatement = connection.prepareStatement(sql);//2
+
+            preparedStatement = connection.prepareStatement(AddPolicy);//2
             preparedStatement.setString(1, policyDetails.getCategory());
             preparedStatement.setString(2, policyDetails.getSubCategor());
             preparedStatement.setString(3, policyDetails.getpName());
@@ -56,10 +55,7 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
     public void displayCategoryandSubCategory() throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
-            final String readQuery = "SELECT Category.cname AS CategoryName, " +
-                    "SubCategory.sbname AS SubCategoryName FROM Category \n" +
-                    "INNER JOIN SubCategory ON Category.cid = SubCategory.sbid;";
-            preparedStatement = connection.prepareStatement(readQuery);//2
+            preparedStatement = connection.prepareStatement(displayCategoryAndSubCategory);//2
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
                 String categoryName = resultSet.getString("CategoryName");
@@ -85,9 +81,7 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
     public List<PolicyDetails> viewPolicy() throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
-
-            final String readQuery = "SELECT * FROM PolicyList";
-            preparedStatement = connection.prepareStatement(readQuery);//2
+            preparedStatement = connection.prepareStatement(readPolicyList);//2
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
                 System.out.println(
@@ -119,10 +113,6 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
     public int updatePolicy(int pid) throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
-            final String updateName = "UPDATE PolicyList SET `Name` = ? WHERE ID =?";
-            final String updateSumAssured = "UPDATE PolicyList SET `Sum Assured` = ? WHERE ID =?";
-            final String updatePremium = "UPDATE PolicyList SET `Premium` = ? WHERE ID =?";
-            final String updateDescription = "UPDATE PolicyList SET  `Description`  = ? WHERE ID =?";
             System.out.println("Enter 1)Name 2)Sum Assured 3)Primium 4)Description for  for update=");
             int choice = sc.nextInt();
             switch (choice) {
@@ -178,8 +168,8 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
     {
         try {
             connection = ConnectionManager.getConnection();//1
-            final String deleteQuery = "DELETE FROM `PolicyList` WHERE ID=?";
-            preparedStatement = connection.prepareStatement(deleteQuery);//2
+            final String deletePolicy = "DELETE FROM `PolicyList` WHERE ID=?";
+            preparedStatement = connection.prepareStatement(deletePolicy);//2
             preparedStatement.setInt(1, pid);
             row = preparedStatement.executeUpdate();//3
             if (row > 0) {

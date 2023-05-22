@@ -1,7 +1,7 @@
-package com.pms.client.admin;
+package com.ims.client.admin;
 
-import com.pms.admin.dao.Impl.UserDetailsDAOImpl;
-import com.pms.client.HomePage;
+import com.ims.admin.dao.Impl.UserDetailsDAOImpl;
+import com.ims.client.HomePage;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -17,8 +17,8 @@ public class Admin {
             System.out.println("                2)Category                              ");
             System.out.println("                3)SubCategory                           ");
             System.out.println("                4)Policy                                ");
-            System.out.println("                5)Buyer's Policy Request                        ");
-            System.out.println("                6)BackHomePage                                 ");
+            System.out.println("                5)Buyer's Policy Request                 ");
+            System.out.println("                6)BackHomePage                          ");
             System.out.println("========================================================");
             System.out.print("Enter the choice=");
             int choice = sc.nextInt();

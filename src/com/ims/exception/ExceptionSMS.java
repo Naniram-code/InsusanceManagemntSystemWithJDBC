@@ -1,4 +1,4 @@
-package com.pms.admin.dao.Impl.jdbcUtility;
+package com.ims.exception;
 
 import java.sql.SQLException;
 

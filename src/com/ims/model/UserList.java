@@ -1,4 +1,4 @@
-package com.pms.model;
+package com.ims.model;
 
 public class UserList {
     public UserList() {
@@ -73,13 +73,13 @@ public class UserList {
 
 
 
-    public UserList(int uid, String uname, String address, long phone, String email, String password) {
+    public UserList(int uid, String uname, String address, long phone, String email) {
         this.uid = uid;
         this.uname = uname;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.password = password;
+
     }
 
 

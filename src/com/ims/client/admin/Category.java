@@ -1,10 +1,8 @@
-package com.pms.client.admin;
+package com.ims.client.admin;
 
 
-import com.pms.admin.dao.Impl.CategoryDAOImpl;
-import com.pms.admin.dao.Impl.PolicyDAOImpl;
-import com.pms.model.CategoryDetail;
-import com.pms.model.PolicyDetails;
+import com.ims.admin.dao.Impl.CategoryDAOImpl;
+import com.ims.model.CategoryDetail;
 
 
 import java.sql.SQLException;
@@ -32,7 +30,7 @@ public class Category {
                 case 1:
                     System.out.print("Enter Category Name =");
                     String name = sc.next();
-                    System.out.print("Enter User Description=");
+                    System.out.print("Enter Category Description=");
                     String ds = sc.next();
                     CategoryDetail cd=new CategoryDetail(name,ds);
                     categoryDAO.addCategory(cd);

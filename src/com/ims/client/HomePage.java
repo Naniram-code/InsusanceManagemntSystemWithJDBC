@@ -1,11 +1,11 @@
-package com.pms.client;
+package com.ims.client;
 
-import com.pms.admin.dao.Impl.UserDetailsDAOImpl;
-import com.pms.admin.dao.Impl.UserStatusDAOImpl;
-import com.pms.client.Customer.Home;
-import com.pms.client.Customer.Registration;
-import com.pms.client.Customer.UserDashBoard;
-import com.pms.client.admin.Admin;
+import com.ims.admin.dao.Impl.UserDetailsDAOImpl;
+import com.ims.admin.dao.Impl.UserStatusDAOImpl;
+import com.ims.client.Customer.Home;
+import com.ims.client.Customer.Registration;
+import com.ims.client.Customer.UserDashBoard;
+import com.ims.client.admin.Admin;
 
 
 import java.sql.SQLException;
@@ -31,15 +31,19 @@ public class HomePage {
                     Home.customermenu();
                     break;
                 case 2:
-                    System.out.println("Enter  login email");
+                    System.out.print("Enter  login email:");
                     String em = sc.next();
-                    System.out.println("Enter  login password");
+                    System.out.print("Enter  login password:");
                     String psw = sc.next();
-                     int uRole=userDAO.AuthenticationAdminaAndUser(em, psw);
+                    int uRole = userDAO.AuthenticationAdminaAndUser(em,psw);
                     if (uRole == 1)
                         Admin.adminPage();
-                    else
-                        UserDashBoard.UserDashBoardmenu();
+                    else if (uRole == 2)
+                        {System.out.println("Welcome to DashBoard");
+                        UserDashBoard.UserDashBoardmenu();}
+                    else {
+                        System.out.print("invalid  email or Password ");
+                    }
                 case 3:
                     Registration.CustomerClientmenu();
                     break;

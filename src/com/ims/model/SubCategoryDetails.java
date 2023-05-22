@@ -1,4 +1,4 @@
-package com.pms.model;
+package com.ims.model;
 
 public class SubCategoryDetails {
     private int sbid;
