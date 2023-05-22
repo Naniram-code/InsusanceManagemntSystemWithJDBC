@@ -1,12 +1,13 @@
 package com.ims.model;
 
 public class CategoryDetail {
+    //for retrieve dCategory details
     public CategoryDetail(int cid,String cname, String description) {
         this.cid = cid;
         this.cname = cname;
         this.description = description;
     }
-
+      //for create or add new  Category
     public CategoryDetail(String cname,  String description) {
         this.cname = cname;
         this.description = description;

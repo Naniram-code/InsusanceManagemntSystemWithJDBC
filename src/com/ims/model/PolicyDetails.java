@@ -69,7 +69,7 @@ public class PolicyDetails {
     public void setPremium(int premium) {
         this.premium = premium;
     }
-
+//retrieve Policy Details
     public PolicyDetails(int pid, String pName, String category, String subCategory, int sumAssured, int premium,String description) {
         this.pid = pid;
         this.pName = pName;
@@ -79,7 +79,7 @@ public class PolicyDetails {
         this.sumAssured = sumAssured;
         this.premium = premium;
     }
-
+    //for inserting Data or adding Policy Details
     public PolicyDetails( String category, String subCategory, String pName, int sumAssured, int premium,String description) {
 
         this.category = category;

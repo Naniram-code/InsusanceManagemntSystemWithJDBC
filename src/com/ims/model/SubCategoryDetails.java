@@ -28,12 +28,12 @@ public class SubCategoryDetails {
     public void setDescription(String description) {
         this.description = description;
     }
-
+  //adding SubCategory details
     public SubCategoryDetails(String sbname, String description) {
         this.sbname = sbname;
         this.description = description;
     }
-
+  //Retrieve SubCategory Details
     public SubCategoryDetails(int sbid, String sbname, String description) {
         this.sbid = sbid;
         this.sbname = sbname;

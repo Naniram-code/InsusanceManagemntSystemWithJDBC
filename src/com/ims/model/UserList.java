@@ -72,7 +72,7 @@ public class UserList {
 
 
 
-
+//for Retrieve  User List
     public UserList(int uid, String uname, String address, long phone, String email) {
         this.uid = uid;
         this.uname = uname;
@@ -83,7 +83,7 @@ public class UserList {
     }
 
 
-
+  //for User Status manipulation
     public UserList(int uid, String uname, String address, long phone, String email, String password, String status) {
         this.uid = uid;
         this.uname = uname;
@@ -93,7 +93,7 @@ public class UserList {
         this.password = password;
         this.status = status;
     }
-
+  //For User registration
     public UserList(String uname, String address, long phone, String email, String password) {
         this.uname = uname;
         this.address = address;

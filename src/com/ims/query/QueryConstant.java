@@ -1,8 +1,10 @@
 package com.ims.query;
 
 public interface QueryConstant {
-    //read data from User Table and Policy list Table
     //public static final =data member=String= bez of interface  definition
+
+    //read data from User Table and Policy list Table
+
     String USER_REQUEST_POLICY = "SELECT t1.uname AS `User Name`, t1.email, t1.phone As `Contact No`,\n" +
             "t2.Category, t2.SubCategory As `Sub Category`, t2.Name, t2.`Sum Assured`, t2.Premium\n" +
             "FROM Users t1\n" +

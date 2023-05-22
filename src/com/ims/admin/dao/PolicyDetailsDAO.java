@@ -8,15 +8,12 @@ import java.util.List;
 
 public interface PolicyDetailsDAO {
     public String addPolicy(PolicyDetails policyDetailsl) throws ExceptionSMS, SQLException;
+
     List<PolicyDetails> viewPolicy() throws SQLException;
+
     int updatePolicy(int pid) throws SQLException;
+
     public int deletePolicy(int pid) throws SQLException;
-
-
-
-
-
-
 
 
 }
