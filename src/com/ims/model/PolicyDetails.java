@@ -80,13 +80,14 @@ public class PolicyDetails {
         this.premium = premium;
     }
 
-    public PolicyDetails(String pName, String category, String subCategory,  int sumAssured, int premium,String description) {
-        this.pName = pName;
+    public PolicyDetails( String category, String subCategory, String pName, int sumAssured, int premium,String description) {
+
         this.category = category;
         this.subCategory = subCategory;
-        this.description = description;
+        this.pName = pName;
         this.sumAssured = sumAssured;
         this.premium = premium;
+        this.description = description;
     }
 }
 

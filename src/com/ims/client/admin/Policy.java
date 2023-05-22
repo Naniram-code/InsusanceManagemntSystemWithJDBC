@@ -26,10 +26,13 @@ public class Policy {
             switch (choice) {
 
                 case 1:
-                    policyDAOp.displayCategoryandSubCategory();
-                    System.out.print("Choose Category =");
+                    System.out.println("***LIST OF CATEGORY***");
+                    policyDAOp.displayCategory();
+                    System.out.print("Choose Category  from List=");
                     String cat = sc.next();
-                    System.out.print("Choose SubCategory=");
+                    System.out.println("***LIST OF SUB CATEGORY***");
+                    policyDAOp.displaySubCategory();
+                    System.out.print("Choose SubCategory from List=");
                     String subcat = sc.next();
                     System.out.print("Enter Policy Name=");
                     String pname = sc.next();

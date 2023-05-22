@@ -60,9 +60,9 @@ public class CategoryDAOImpl implements CategoryDetailsDAO {
                 row++;
             }
             if (row != 0) {
-                throw new ExceptionSMS("View All Student Successfully");
+                throw new ExceptionSMS("View All Category Successfully");
             } else {
-                throw new ExceptionSMS("Student  are not exit");
+                throw new ExceptionSMS("Category  not exit");
             }
         } catch (ExceptionSMS e) {
             System.out.println(e.getMessage());

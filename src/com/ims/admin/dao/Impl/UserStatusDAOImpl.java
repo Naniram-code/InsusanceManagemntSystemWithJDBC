@@ -6,6 +6,7 @@ import com.ims.admin.dao.UserStatusDAO;
 import com.ims.model.UserList;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -40,6 +41,7 @@ public class UserStatusDAOImpl implements UserStatusDAO {
                 int sa = resultSet.getInt("Sum Assured");
                 int pr = resultSet.getInt("Premium");
 
+
                 preparedStatement = connection.prepareStatement(USER_INSERT_MY_POLICY_LIST);
                 //request set
                 preparedStatement.setString(1, uName);
@@ -51,6 +53,7 @@ public class UserStatusDAOImpl implements UserStatusDAO {
                 preparedStatement.setInt(7, sa);
                 preparedStatement.setInt(8, pr);
                 preparedStatement.setString(9, "Requested");
+
                 row = preparedStatement.executeUpdate();
             }
 
@@ -81,16 +84,19 @@ public class UserStatusDAOImpl implements UserStatusDAO {
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
                 System.out.println(//getting value from MY_Policy_LIst
-                               "ID:"+resultSet.getInt(1) +" "+
-                               "User Name:"+resultSet.getString(2) +" "+
-                               "Email"+resultSet.getString(3) +" "+
-                               "Contact no:"+resultSet.getString(4) +" "+
-                               "Category:"+resultSet.getString(5) +" "+
-                               "Sub Category:"+resultSet.getString(6) +" "+
-                               "Policy name:"+resultSet.getString(7) +" "+
-                               "Sum Assured:"+resultSet.getInt(8)+" "+
-                                       "Premium:"+resultSet.getString(9)+" "+
-                                     "Status:"+resultSet.getString(10));
+                        "ID: " + resultSet.getInt(1) + " " +
+                                "User Name: " + resultSet.getString(2) + " " +
+                                "Email: " + resultSet.getString(3) + " " +
+                                "Contact no: " + resultSet.getString(4) + " " +
+                                "Category: " + resultSet.getString(5) + " " +
+                                "Sub Category: " + resultSet.getString(6) + " " +
+                                "Policy name: " + resultSet.getString(7) + " " +
+                                "Sum Assured: " + resultSet.getInt(8) + " " +
+                                "Premium: " + resultSet.getString(9) + " " +
+                                "Status: " + resultSet.getString(10) + " " +
+                                "Date: " + resultSet.getDate(11));
+                                  // + " " + resultSet.getTime(11)
+
                                        row++;
             }
             if (row != 0) {
@@ -164,17 +170,21 @@ public class UserStatusDAOImpl implements UserStatusDAO {
             preparedStatement.setString(2, "Active");
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
-                System.out.println(//getting value from MY_Policy_LIst
-                                "ID:"+resultSet.getInt(1) +" "+
-                                "User Name:"+resultSet.getString(2) +" "+
-                                "Email: "+resultSet.getString(3) +" "+
-                                "Contact no:"+resultSet.getString(4) +" "+
-                                "Category:"+resultSet.getString(5) +" "+
-                                "Sub Category:"+resultSet.getString(6) +" "+
-                                "Policy name:"+resultSet.getString(7) +" "+
-                                "Sum Assured:"+resultSet.getInt(8)+" "+
-                                "Premium:"+resultSet.getString(9)+" "+
-                                "Status:"+resultSet.getString(10));
+                System.out.println(
+                        "ID: " + resultSet.getInt(1) + " " +
+                                "User Name: " + resultSet.getString(2) + " " +
+                                "Email: " + resultSet.getString(3) + " " +
+                                "Contact no: " + resultSet.getString(4) + " " +
+                                "Category: " + resultSet.getString(5) + " " +
+                                "Sub Category: " + resultSet.getString(6) + " " +
+                                "Policy name: " + resultSet.getString(7) + " " +
+                                "Sum Assured: " + resultSet.getInt(8) + " " +
+                                "Premium: " + resultSet.getString(9) + " " +
+                                "Status: " + resultSet.getString(10) + " " +
+                                "Time: " + resultSet.getDate(11) );
+
+
+
                 row++;
             }
             if (row != 0) {

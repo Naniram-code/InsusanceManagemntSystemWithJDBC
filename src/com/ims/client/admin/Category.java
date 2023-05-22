@@ -36,11 +36,7 @@ public class Category {
                     categoryDAO.addCategory(cd);
                     break;
                 case 2:
-                  if(categoryDAO.viewCategory()!=null);
-                    for (CategoryDetail de:categoryDAO.viewCategory())
-                    {
-                    System.out.println("cid: " + de.getcid() + ", Name: " + de.getcname() + ", Address: " +
-                            de.getDescription());}
+                      categoryDAO.viewCategory();
                     break;
 
                 case 3:

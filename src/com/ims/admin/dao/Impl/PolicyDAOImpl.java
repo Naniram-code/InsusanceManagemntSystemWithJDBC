@@ -52,22 +52,24 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
         return null;
     }
 
-    public void displayCategoryandSubCategory() throws SQLException {
+    public void displayCategory() throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
-            preparedStatement = connection.prepareStatement(displayCategoryAndSubCategory);//2
+            preparedStatement = connection.prepareStatement(readCategoryList);//2
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
-                String categoryName = resultSet.getString("CategoryName");
-                String subCategoryName = resultSet.getString("SubCategoryName");
-                System.out.println("CategoryName:" + categoryName + "  SubCategoryName: " + subCategoryName);
+
+                System.out.println(
+                        "ID: " + resultSet.getString(1) + " " +
+                                "CategoryName: " + resultSet.getString(2) + " " +
+                                "Description: " + resultSet.getString(3));
                 row++;
             }
 
             if (row > 0) {
-                throw new ExceptionSMS(" Check Category and SubCategoy");
+                throw new ExceptionSMS(" Display ALL Category");
             } else {
-                throw new ExceptionSMS(" Add Category and SubCategoy First");
+                throw new ExceptionSMS(" Add Category not Exit ");
             }
         } catch (ExceptionSMS e) {
             System.out.println(e.getMessage());
@@ -76,6 +78,30 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
         }
     }
 
+    public void displaySubCategory() throws SQLException {
+        try {
+            connection = ConnectionManager.getConnection();//1
+            preparedStatement = connection.prepareStatement(readSuCategoryList);//2
+            resultSet = preparedStatement.executeQuery();//3
+            while (resultSet.next()) {
+                System.out.println(
+                        "ID:" + resultSet.getString(1) + " " +
+                                "Sub CategoryName:" + resultSet.getString(2) + " " +
+                                "Description:" + resultSet.getString(3));
+                row++;
+            }
+
+            if (row > 0) {
+                throw new ExceptionSMS(" Display ALL SubCategory");
+            } else {
+                throw new ExceptionSMS("  SubCategory not Exit");
+            }
+        } catch (ExceptionSMS e) {
+            System.out.println(e.getMessage());
+        } finally {
+            ConnectionManager.closeconnection(resultSet, preparedStatement, connection);
+        }
+    }
 
     @Override
     public List<PolicyDetails> viewPolicy() throws SQLException {
@@ -84,14 +110,14 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
             preparedStatement = connection.prepareStatement(readPolicyList);//2
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
-                System.out.println(
-                        "pid:" + resultSet.getInt(1) + "  Category:" +
-                                resultSet.getString(2) + "  SubCategory:" +
-                                resultSet.getString(3) + "  Name:" +
-                                resultSet.getString(4) + "  Sum Assured:" +
-                                resultSet.getInt(5) + "  Premium:" +
-                                resultSet.getInt(6) + "  Description: " +
-                                resultSet.getString(7));
+                       System.out.println(
+                        "pid:" + resultSet.getInt(1) + " " +
+                                "Category:" + resultSet.getString(2) + " " +
+                                "Sub Category:" + resultSet.getString(3) + " " +
+                                "Name:" + resultSet.getString(4) + " " +
+                                "Premium:" + resultSet.getInt(5) + " " +
+                                "Sum Assured:" + resultSet.getInt(6) + " " +
+                                "Description:" + resultSet.getString(7));
                 row++;
             }
             if (row != 0) {
@@ -163,9 +189,7 @@ public class PolicyDAOImpl implements PolicyDetailsDAO {
     }
 
     @Override
-    public int deletePolicy(int pid) throws SQLException
-
-    {
+    public int deletePolicy(int pid) throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
             final String deletePolicy = "DELETE FROM `PolicyList` WHERE ID=?";
