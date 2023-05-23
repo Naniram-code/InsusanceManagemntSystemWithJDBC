@@ -12,7 +12,7 @@ public interface UserStatusDAO {
 
     public int ActivateRequest(int id) throws SQLException;
     public int CancelUser(int uid) throws SQLException;
-    public void ViewPolicyHold(int uid) throws SQLException;
+    public void ViewPolicyHold(String email) throws SQLException;
 
 
 

@@ -99,7 +99,7 @@ public class UserStatusDAOImpl implements UserStatusDAO {
 
                                        row++;
             }
-            if (row != 0) {
+            if (row > 0) {
                 throw new ExceptionSMS("View All PolicyList Successfully");
             } else {
                 throw new ExceptionSMS("PolicyList  not exit");
@@ -162,16 +162,16 @@ public class UserStatusDAOImpl implements UserStatusDAO {
         }
 
     @Override
-    public void ViewPolicyHold(int uid)throws SQLException {
+    public void ViewPolicyHold(String  email)throws SQLException {
         try {
             connection = ConnectionManager.getConnection();//1
             preparedStatement = connection.prepareStatement(Select_Active_User);//2
-            preparedStatement.setInt(1, uid);
+            preparedStatement.setString(1, email);
             preparedStatement.setString(2, "Active");
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
                 System.out.println(
-                        "ID: " + resultSet.getInt(1) + " " +
+                                "ID: " + resultSet.getInt(1) + " " +
                                 "User Name: " + resultSet.getString(2) + " " +
                                 "Email: " + resultSet.getString(3) + " " +
                                 "Contact no: " + resultSet.getString(4) + " " +
@@ -182,9 +182,6 @@ public class UserStatusDAOImpl implements UserStatusDAO {
                                 "Premium: " + resultSet.getString(9) + " " +
                                 "Status: " + resultSet.getString(10) + " " +
                                 "Time: " + resultSet.getDate(11) );
-
-
-
                 row++;
             }
             if (row != 0) {

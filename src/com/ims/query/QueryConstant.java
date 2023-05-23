@@ -17,7 +17,7 @@ public interface QueryConstant {
     String Admin_Activate_User = "UPDATE MY_Policy_List SET `Status` = ? WHERE ID =?";
     String Admin_Cancel_User = "UPDATE MY_Policy_List SET `Status` = ? WHERE ID =?";
 
-    String Select_Active_User = "select*from  MY_Policy_List where  ID=? and Status=?";
+    String Select_Active_User = "select*from  MY_Policy_List where  email=? and Status=?";
 
     //Category Query
     String adnimAddCategory = "INSERT INTO Category (`cname`,`Description`) VALUES (?,?)";

@@ -48,9 +48,9 @@ public class UserDashBoard {
 
                     break;
                 case 5:
-                    System.out.print("Enter your Id=");
-                    int id = sc.nextInt();
-                    userstatusDAO.ViewPolicyHold(id);
+                    System.out.print("Enter your email=");
+                    String email = sc.next();
+                    userstatusDAO.ViewPolicyHold(email);
 
 
                     break;
