@@ -4,8 +4,7 @@ public class UserList {
     public UserList() {
         super();
     }
-    public static String Aemail="admin";
-    public static String Apassword="admin";
+
     private int uid;
     private String uname;
     private String address;
