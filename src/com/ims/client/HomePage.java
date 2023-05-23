@@ -44,6 +44,7 @@ public class HomePage {
                     else {
                         System.out.print("invalid  email or Password ");
                     }
+                    break;
                 case 3:
                     Registration.CustomerClientmenu();
                     break;

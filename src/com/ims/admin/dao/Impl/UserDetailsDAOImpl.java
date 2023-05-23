@@ -25,7 +25,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 
     @Override
     public String addUser(UserList userList) throws SQLException {
-
+            String msg="";
         try {
             connection = ConnectionManager.getConnection();//1 Connection
             preparedStatement = connection.prepareStatement(insertUser);//2 prepare Statement
@@ -43,11 +43,12 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
                 throw new ExceptionSMS("User Failed to Add");
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            msg=e.getMessage();
+            System.out.println(msg);
         } finally {
             ConnectionManager.closeconnection(connection, preparedStatement);
         }
-        return null;
+        return msg;
     }
 
 
@@ -93,7 +94,9 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
             resultSet = preparedStatement.executeQuery();//3
             if (resultSet.next()) {
                 role = resultSet.getInt("role_ID");
-                System.out.println("User login:" + resultSet.getString("uname"));
+
+                System.out.println("ID:" + resultSet.getInt(1)+"  "+
+                        "User Name:"+resultSet.getString("uname"));
             } else {
                 throw new ExceptionSMS("User not exit");
             }
@@ -109,7 +112,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 
     @Override
     public String getPassword(String email) throws SQLException {
-        String password = null;
+        String password = "";
         try {
             connection = ConnectionManager.getConnection();//1
             preparedStatement = connection.prepareStatement(readPassword);//2
@@ -123,6 +126,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 
             }
         } catch (ExceptionSMS e) {
+
             System.out.println(e.getMessage());
         } finally {
             ConnectionManager.closeconnection(resultSet, preparedStatement, connection);

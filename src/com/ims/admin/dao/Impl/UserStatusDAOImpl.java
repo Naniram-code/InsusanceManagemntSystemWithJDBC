@@ -171,7 +171,7 @@ public class UserStatusDAOImpl implements UserStatusDAO {
             resultSet = preparedStatement.executeQuery();//3
             while (resultSet.next()) {
                 System.out.println(
-                                "ID: " + resultSet.getInt(1) + " " +
+                                //"ID: " + resultSet.getInt(1) + " " +
                                 "User Name: " + resultSet.getString(2) + " " +
                                 "Email: " + resultSet.getString(3) + " " +
                                 "Contact no: " + resultSet.getString(4) + " " +
